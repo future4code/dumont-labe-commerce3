@@ -109,9 +109,8 @@ class App extends React.Component {
     return newFilteredByValueArray
   }
   // ---------------------------------------------------------//
-  
+
   render() {
-    console.log(this.filterByValue(0,0))
     return (
       <MotherDiv>
         <ComponentDiv>
