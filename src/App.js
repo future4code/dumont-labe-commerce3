@@ -82,22 +82,45 @@ class App extends React.Component {
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/205901_246x306.png",
       inCart: false,
     },
-    ]
+    ],
+    minFilterValue: "",
+    maxFilterValue: "",
   }
 
+  // ---------------------------------------------------------//
+  // Funções do FILTER //
+  filterByValue = (min, max) => {
+    const filteredByMinValueArray = this.state.productsArray.filter((product) => {
+      if (min) { // Se min não for zero ou vazio        
+        return product.value >= min
+      } else {
+        return true
+      }
+    })
+
+    const newFilteredByValueArray = filteredByMinValueArray.filter((product) => {
+      if (max) { // Se max não for zero ou vazio 
+        return product.value <= max
+      } else {
+        return true
+      }
+    })
+
+    return newFilteredByValueArray
+  }
+  // ---------------------------------------------------------//
 
   render() {
-    console.log(this.state.productsArray)
     return (
       <MotherDiv>
         <ComponentDiv>
-          <Filter propsArray={this.state.productsArray}/>
+          <Filter />
         </ComponentDiv>
         <ComponentDiv>
-          <Products propsArray={this.state.productsArray}/>
+          <Products propsArray={this.state.productsArray} />
         </ComponentDiv>
         <ComponentDiv>
-          <ShoppingCart propsArray={this.state.productsArray}/>
+          <ShoppingCart propsArray={this.state.productsArray} />
         </ComponentDiv>
       </MotherDiv>
     );
