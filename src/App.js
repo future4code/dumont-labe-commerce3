@@ -26,16 +26,79 @@ const ComponentDiv = styled.div`
 
 class App extends React.Component {
   state = {
-    productsArray: []
+    productsArray: [{
+      id: Date.now(),
+      name: "U.S.S. Discovery: NCC-1031",
+      value: 349.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/228043_246x306.png",
+      inCart: false,
+    },
+    {
+      id: Date.now() - 1,
+      name: "USS Enterprise NCC-1701-D",
+      value: 349.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/99306_246x306.png",
+      inCart: false,
+    },
+    {
+      id: Date.now() - 2,
+      name: "Romulan Warbird Special Issue",
+      value: 349.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/187059_246x306.png",
+      inCart: false,
+    },
+    {
+      id: Date.now() - 3,
+      name: "Cylon Heavy Raider",
+      value: 239.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/228122_246x306.png",
+      inCart: false,
+    },
+    {
+      id: Date.now() - 4,
+      name: " Viper (Blood and Chrome)",
+      value: 239.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/202940_246x306.png",
+      inCart: false,
+    },
+    {
+      id: Date.now() - 5,
+      name: "U.S.S. Orville — ECV-197",
+      value: 299.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/223235_246x306.png",
+      inCart: false,
+    },
+    {
+      id: Date.now() - 6,
+      name: "Spocks Jellyfish",
+      value: 139.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/179308_246x306.png",
+      inCart: false,
+    },
+    {
+      id: Date.now() - 7,
+      name: "Klingon Iks Negh'Var",
+      value: 119.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/205901_246x306.png",
+      inCart: false,
+    },
+    ]
   }
 
 
   render() {
+    console.log(this.state.productsArray)
     return (
       <MotherDiv>
-        <ComponentDiv><Filter /></ComponentDiv>
-        <ComponentDiv><Products /></ComponentDiv>
-        <ComponentDiv><ShoppingCart /></ComponentDiv>
+        <ComponentDiv>
+          <Filter propsArray={this.state.productsArray}/>
+        </ComponentDiv>
+        <ComponentDiv>
+          <Products propsArray={this.state.productsArray}/>
+        </ComponentDiv>
+        <ComponentDiv>
+          <ShoppingCart propsArray={this.state.productsArray}/>
+        </ComponentDiv>
       </MotherDiv>
     );
   }
