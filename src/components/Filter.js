@@ -22,12 +22,16 @@ const FreeTextInput = styled.input`
     margin-top: 0;
     padding: 0;
 `
-const InputTitle = styled.p`
+const InputTittle = styled.p`
     word-wrap: break-word;
     max-width: 100%;
     margin: 4px;
 `
-const SectionTitle = styled.h2`
+const SectionTittle = styled.h2`
+    word-wrap: break-word;
+    max-width: 100%;
+`
+const H3Tittle = styled.h3`    
     word-wrap: break-word;
     max-width: 100%;
 `
@@ -37,17 +41,19 @@ class Filter extends React.Component {
     render() {
         return (
             <InputDiv>
-                <SectionTitle>Filtros:</SectionTitle>
+                <SectionTittle>Filtros:</SectionTittle>
 
-                <InputTitle>Valor mínimo</InputTitle>
+                <InputTittle>Valor mínimo</InputTittle>
 
-                <NumberInput />
+                <NumberInput type="number" />
 
-                <InputTitle>Valor máximo</InputTitle>
+                <InputTittle>Valor máximo</InputTittle>
 
-                <NumberInput />
+                <NumberInput type="number" />
 
-                <InputTitle>Buscar por produto</InputTitle>
+                <H3Tittle>ou...</H3Tittle>
+
+                <InputTittle>Busque por produto:</InputTittle>
                 
                 <FreeTextInput />
             </InputDiv>
