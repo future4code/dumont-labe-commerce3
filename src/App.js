@@ -160,11 +160,7 @@ class App extends React.Component {
           <Products propsArray={arrayFilter} />
         </ComponentDiv>
         <ComponentDiv>
-<<<<<<< HEAD
-          <ShoppingCart propsArray={this.state.productsArray}/>
-=======
-         {/*  <ShoppingCart propsArray={this.state.productsArray} /> */}
->>>>>>> b6650735354dc786788bfb7702506f1ca466d5fb
+          <ShoppingCart propsArray={this.state.productsArray} />
         </ComponentDiv>
       </MotherDiv>
     );
