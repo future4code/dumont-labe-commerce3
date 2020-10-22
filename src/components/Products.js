@@ -11,7 +11,7 @@ const ProductsHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 16px
+    padding: 0 16px;
 `
 const ProductsGrid = styled.div`
     display: grid;
@@ -35,9 +35,9 @@ class Products extends React.Component {
                 </label>
             </ProductsHeader>
             <ProductsGrid>
-                <ProductsCards/>
-                <ProductsCards/>
-                <ProductsCards/>
+                {this.props.propsArray.map((product) => {
+                  return <ProductsCards product={product}/>
+                })}
             </ProductsGrid>
         </ProductsContainer>
 
