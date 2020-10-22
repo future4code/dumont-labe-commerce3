@@ -139,7 +139,7 @@ class App extends React.Component {
     return fullyFilteredArray
   }
   // ---------------------------------------------------------//
-
+  
   render() {
   //  console.log(this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
 
@@ -160,7 +160,7 @@ class App extends React.Component {
           <Products propsArray={this.state.productsArray} />
         </ComponentDiv>
         <ComponentDiv>
-          <ShoppingCart propsArray={this.state.productsArray} />
+          <ShoppingCart propsArray={this.state.productsArray}/>
         </ComponentDiv>
       </MotherDiv>
     );
