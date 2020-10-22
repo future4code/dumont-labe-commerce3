@@ -19,7 +19,7 @@ class ShoppingCart extends React.Component {
         })
 
         const printedArray = filteredArray.map((product) => {
-            return (<ShoppingCartItem product={product}/>)
+            return (<ShoppingCartItem removeItem={this.props.removeItem} product={product}/>)
         })
 
         return <div>

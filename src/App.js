@@ -100,6 +100,18 @@ class App extends React.Component {
   this.setState({productsArray: cartArray})
   }
 
+  removeItem = (id) => {
+    const cartArray = this.state.productsArray.map((product) => {
+      if (product.id === id) {
+       const newProduct = {...product, inCart: false}
+       return newProduct
+      } else {
+       return product
+      }
+    })
+  this.setState({productsArray: cartArray})
+  }
+
   // ---------------------------------------------------------//
   // Funções do FILTER //
   onChangeMin = (event) => {
@@ -171,7 +183,7 @@ class App extends React.Component {
           <Products addToCart={this.addToCart} propsArray={arrayFilter} />
         </ComponentDiv>
         <ComponentDiv>
-          <ShoppingCart propsArray={this.state.productsArray} />
+          <ShoppingCart removeItem={this.removeItem} propsArray={this.state.productsArray} />
         </ComponentDiv>
       </MotherDiv>
     );
