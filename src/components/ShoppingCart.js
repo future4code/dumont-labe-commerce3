@@ -8,6 +8,14 @@ const CartListContainer = styled.div`
 `
 
 class ShoppingCart extends React.Component {
+    getTotalValue = () => {
+        let totalValue = 0
+
+        for(let product of this.props.propsArray){
+            totalValue += product.value * product.quantity
+        }
+        return totalValue
+    }
    
     render() {
         const filteredArray = this.props.propsArray.filter((product) => {
@@ -26,7 +34,7 @@ class ShoppingCart extends React.Component {
             <h2>Carrinho:</h2>
             <CartListContainer>
                 {printedArray}
-                <p><b>Valor total: R$500,00 </b></p>
+                <p><b>Valor total: R${this.getTotalValue()}</b></p>
             </CartListContainer>
         </div>
     }

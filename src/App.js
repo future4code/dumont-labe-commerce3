@@ -32,6 +32,7 @@ class App extends React.Component {
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/228043_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     {
       id: Date.now() - 1,
@@ -39,6 +40,7 @@ class App extends React.Component {
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/99306_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     {
       id: Date.now() - 2,
@@ -46,6 +48,7 @@ class App extends React.Component {
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/187059_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     {
       id: Date.now() - 3,
@@ -53,6 +56,7 @@ class App extends React.Component {
       value: 239.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/228122_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     {
       id: Date.now() - 4,
@@ -60,6 +64,7 @@ class App extends React.Component {
       value: 239.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/202940_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     {
       id: Date.now() - 5,
@@ -67,6 +72,7 @@ class App extends React.Component {
       value: 299.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/223235_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     {
       id: Date.now() - 6,
@@ -74,6 +80,7 @@ class App extends React.Component {
       value: 139.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/179308_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     {
       id: Date.now() - 7,
@@ -81,6 +88,7 @@ class App extends React.Component {
       value: 119.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/205901_246x306.png",
       inCart: false,
+      quantity: 1,
     },
     ],
     minFilterValue: 0,
@@ -100,6 +108,14 @@ class App extends React.Component {
   this.setState({productsArray: cartArray})
   }
 
+  removeFromCart = (id) => {
+    const removedArray = this.state.productsArray.map((product) => {
+      if (product.id === id) {
+       return {...product, quantity: product.quantity - 1}
+      }
+    }).filter((product) => product.quantity > 0)
+    this.setState({productsArray: removedArray})
+  }
   // ---------------------------------------------------------//
   // Funções do FILTER //
   onChangeMin = (event) => {
@@ -171,7 +187,7 @@ class App extends React.Component {
           <Products addToCart={this.addToCart} propsArray={arrayFilter} />
         </ComponentDiv>
         <ComponentDiv>
-          <ShoppingCart propsArray={this.state.productsArray} />
+          <ShoppingCart propsArray={this.state.productsArray} removeFromCart={this.removeFromCart} />
         </ComponentDiv>
       </MotherDiv>
     );
