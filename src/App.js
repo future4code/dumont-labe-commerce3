@@ -38,7 +38,7 @@ class App extends React.Component {
       name: "USS Enterprise NCC-1701-D",
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/99306_246x306.png",
-      inCart: false,
+      inCart: true,
     },
     {
       id: Date.now() - 2,
@@ -59,7 +59,7 @@ class App extends React.Component {
       name: " Viper (Blood and Chrome)",
       value: 239.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/202940_246x306.png",
-      inCart: false,
+      inCart: true,
     },
     {
       id: Date.now() - 5,
@@ -73,7 +73,7 @@ class App extends React.Component {
       name: "Spocks Jellyfish",
       value: 139.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/179308_246x306.png",
-      inCart: false,
+      inCart: true,
     },
     {
       id: Date.now() - 7,
@@ -86,6 +86,18 @@ class App extends React.Component {
     minFilterValue: 0,
     maxFilterValue: 0,
     textFilterValue: "",
+  }
+
+  addToCart = (id) => {
+    const cartArray = this.state.productsArray.map((product) => {
+      if (product.id === id) {
+       const newProduct = {...product, inCart: true}
+       return newProduct
+      } else {
+       return product
+      }
+    })
+  this.setState({productsArray: cartArray})
   }
 
   // ---------------------------------------------------------//
@@ -142,7 +154,6 @@ class App extends React.Component {
 
   render() {
   let arrayFilter = (this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
-
     return (
       <MotherDiv>
         <ComponentDiv>
@@ -157,7 +168,7 @@ class App extends React.Component {
           />
         </ComponentDiv>
         <ComponentDiv>
-          <Products propsArray={arrayFilter} />
+          <Products addToCart={this.addToCart} propsArray={arrayFilter} />
         </ComponentDiv>
         <ComponentDiv>
          {/*  <ShoppingCart propsArray={this.state.productsArray} /> */}
