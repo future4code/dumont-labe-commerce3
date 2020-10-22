@@ -83,38 +83,78 @@ class App extends React.Component {
       inCart: false,
     },
     ],
-    minFilterValue: "",
-    maxFilterValue: "",
+    minFilterValue: 0,
+    maxFilterValue: 0,
+    textFilterValue: "",
   }
 
   // ---------------------------------------------------------//
   // Funções do FILTER //
-  filterByValue = (min, max) => {
-    const filteredByMinValueArray = this.state.productsArray.filter((product) => {
-      if (min) { // Se min não for zero ou vazio        
-        return product.value >= min
-      } else {
-        return true
-      }
-    })
+  onChangeMin = (event) => {
+    const newMinValue = event.target.value
+    this.setState({ minFilterValue: newMinValue })
+  }
 
-    const newFilteredByValueArray = filteredByMinValueArray.filter((product) => {
-      if (max) { // Se max não for zero ou vazio 
-        return product.value <= max
-      } else {
-        return true
-      }
-    })
+  onChangeMax = (event) => {
+    const newMaxValue = event.target.value
+    this.setState({ maxFilterValue: newMaxValue })
+  }
 
-    return newFilteredByValueArray
+  onChangeText= (event) => {
+    const newTextValue = event.target.value
+    this.setState({ textFilterValue: newTextValue })
+  }
+
+  filterProductsArray = (min, max, text) => {
+    let filteredByValueArray
+    if (min || max) {
+      // Se min ou max não forem zero ou vazio. Senão, pula o filtro por valor.
+      filteredByValueArray = this.state.productsArray.filter((product) => {
+        if (min && !max) {
+          // Se min não for zero ou vazio e max for.       
+          return product.value >= min
+        } else if (!min && max) {
+          // Se max não for zero ou vazio e min for.
+          return product.value <= max
+        } else if (min && max) {
+          // Se ambos min e max tem um valor diferente de vazio ou zero.
+          return ((product.value >= min) && (product.value <= max))
+        }
+      })
+
+    } else {
+      filteredByValueArray = this.state.productsArray
+    }
+
+    let fullyFilteredArray
+    if (text) {
+      // Se o campo "Buscar por produto" não estiver vazio. Senão, pula o filtro por texto.
+      fullyFilteredArray = filteredByValueArray.filter((product) => {
+        return product.name.toLowerCase().includes(`${text.toLowerCase()}`)
+      })
+    } else {
+      fullyFilteredArray = filteredByValueArray
+    }
+
+    return fullyFilteredArray
   }
   // ---------------------------------------------------------//
 
   render() {
+    console.log(this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
+    
     return (
       <MotherDiv>
         <ComponentDiv>
-          <Filter />
+          <Filter
+            onChangeMin={this.onChangeMin}
+            onChangeMax={this.onChangeMax}
+            onChangeText={this.onChangeText}
+
+            minValue={this.state.minFilterValue}
+            maxValue={this.state.maxFilterValue}
+            textValue={this.state.textFilterValue}
+          />
         </ComponentDiv>
         <ComponentDiv>
           <Products propsArray={this.state.productsArray} />
