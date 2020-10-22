@@ -22,20 +22,38 @@ const ProductsGrid = styled.div`
 
 class Products extends React.Component {
 
+    state = {
+        order: 'CRESCENTE'
+    }
+    
+    onChange = (event) => {
+        const choice = event.target.value
+        this.setState({order: choice})
+    }
+
+    orderArray = () => {
+        const newArray = this.props.propsArray.sort((a,b) => this.state.order === 'CRESCENTE' ? a.value - b.value : b.value - a.value)
+    return newArray
+    }
+
+    
+	
+
     render() {
+        let printedArray = this.orderArray()
         return <ProductsContainer>
             <ProductsHeader>
-                <p>Quantidade de Produtos: 8</p>
+                <p>Quantidade de Produtos: {printedArray.length}</p>
                 <label>
                     Ordenar: 
-                    <select>
-                        <option>Crescente</option>
-                        <option>Decrescente</option>
+                    <select onChange = {this.onChange}>
+                        <option value={'CRESCENTE'}>Crescente</option>
+                        <option value={'DECRESCENTE'}>Decrescente</option>
                     </select>
                 </label>
             </ProductsHeader>
             <ProductsGrid>
-                {this.props.propsArray.map((product) => {
+                {printedArray.map((product) => {
                   return <ProductsCards addToCart={this.props.addToCart} product={product}/>
                 })}
             </ProductsGrid>
