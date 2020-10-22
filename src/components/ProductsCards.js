@@ -27,13 +27,12 @@ class ProductsCards extends React.Component {
 
     render() {
         const product = this.props.product
-        console.log(product)
         return <CardsContainer>
             <img src={product.imageUrl}/>
             <CardsInfo>
                 <p>{product.name}</p>
                 <p>R$ {product.value}</p>
-                <button>Adicionar ao Carrinho</button>
+                <button onClick = {() => this.props.addToCart(product.id)}>Adicionar ao Carrinho</button>
             </CardsInfo>
         </CardsContainer>
                 }
