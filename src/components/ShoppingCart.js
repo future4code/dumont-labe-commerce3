@@ -10,14 +10,22 @@ const CartListContainer = styled.div`
 class ShoppingCart extends React.Component {
    
     render() {
+        const filteredArray = this.props.propsArray.filter((product) => {
+            if (product.inCart === true){
+                return true
+            } else {
+                return false
+            }
+        })
+
+        const printedArray = filteredArray.map((product) => {
+            return (<ShoppingCartItem product={product}/>)
+        })
+
         return <div>
             <h2>Carrinho:</h2>
             <CartListContainer>
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
+                {printedArray}
                 <p><b>Valor total: R$500,00 </b></p>
             </CartListContainer>
         </div>

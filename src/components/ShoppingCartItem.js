@@ -15,9 +15,11 @@ const ItemContainer = styled.div`
 class ShoppingCartItem extends React.Component {
 
     render() {
+        console.log(this.props.product)
         return <ItemContainer>
             <p>1x</p>
-            <p>Produto</p>
+            <p>{this.props.product.name}</p>
+            <p>R${this.props.product.value}</p>
             <button>Remover</button>
         </ItemContainer>
     }
