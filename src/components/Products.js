@@ -36,7 +36,7 @@ class Products extends React.Component {
             </ProductsHeader>
             <ProductsGrid>
                 {this.props.propsArray.map((product) => {
-                  return <ProductsCards product={product}/>
+                  return <ProductsCards addToCart={this.props.addToCart} product={product}/>
                 })}
             </ProductsGrid>
         </ProductsContainer>
