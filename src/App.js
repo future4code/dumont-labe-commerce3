@@ -42,7 +42,7 @@ class App extends React.Component {
     },
     {
       id: Date.now() - 2,
-      name: "Romulan Warbird Special Issue",
+      name: "Romulan Warbird Special",
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/187059_246x306.png",
       inCart: false,
@@ -141,7 +141,7 @@ class App extends React.Component {
   // ---------------------------------------------------------//
 
   render() {
-  //  console.log(this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
+  let arrayFilter = (this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
 
     return (
       <MotherDiv>
@@ -157,10 +157,10 @@ class App extends React.Component {
           />
         </ComponentDiv>
         <ComponentDiv>
-          <Products propsArray={this.state.productsArray} />
+          <Products propsArray={arrayFilter} />
         </ComponentDiv>
         <ComponentDiv>
-          <ShoppingCart propsArray={this.state.productsArray} />
+         {/*  <ShoppingCart propsArray={this.state.productsArray} /> */}
         </ComponentDiv>
       </MotherDiv>
     );

@@ -26,11 +26,13 @@ const AddToCartButton = styled.button`
 class ProductsCards extends React.Component {
 
     render() {
+        const product = this.props.product
+        console.log(product)
         return <CardsContainer>
-            <img src={'https://img.assinaja.com/assets/tZ/003/img/233918_246x306.png'}/>
+            <img src={product.imageUrl}/>
             <CardsInfo>
-                <p>USS Enterprise</p>
-                <p>R$ 149.99</p>
+                <p>{product.name}</p>
+                <p>R$ {product.value}</p>
                 <button>Adicionar ao Carrinho</button>
             </CardsInfo>
         </CardsContainer>
