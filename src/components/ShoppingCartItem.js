@@ -15,10 +15,12 @@ const ItemContainer = styled.div`
 class ShoppingCartItem extends React.Component {
 
     render() {
+        console.log(this.props.product)
         return <ItemContainer>
-            <p>this.props.cartItem.quantity</p>
-            <p>this.props.cartItem.name</p>
-            <button onClick={() => this.props.removeProductFromCart(this.props.cartItem.id)}>Remover</button>
+            <p>1x</p>
+            <p>{this.props.product.name}</p>
+            <p>R${this.props.product.value}</p>
+            <button>Remover</button>
         </ItemContainer>
     }
 }

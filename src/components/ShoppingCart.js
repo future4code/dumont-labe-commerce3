@@ -8,29 +8,25 @@ const CartListContainer = styled.div`
 `
 
 class ShoppingCart extends React.Component {
-    getTotalValue = () => {
-        let totalValue = 0
-
-        for (let product of this.props.productsInCart) {
-            totalValue += product.price * product.quantity
-        }
-
-        return totalValue
-    }
-
+   
     render() {
+        const filteredArray = this.props.propsArray.filter((product) => {
+            if (product.inCart === true){
+                return true
+            } else {
+                return false
+            }
+        })
+
+        const printedArray = filteredArray.map((product) => {
+            return (<ShoppingCartItem product={product}/>)
+        })
+
         return <div>
             <h2>Carrinho:</h2>
             <CartListContainer>
-                {this.props.productsInCart.map((product) => {
-                    return <ShoppingCartItem cartItem={product} removeProductFromCart={this.props.removeProductFromCart}/>
-                })}
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
-                <ShoppingCartItem/>
-                <p>Valor total: R${this.getTotalValue()},00 </p>
+                {printedArray}
+                <p><b>Valor total: R$500,00 </b></p>
             </CartListContainer>
         </div>
     }
