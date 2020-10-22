@@ -141,8 +141,8 @@ class App extends React.Component {
   // ---------------------------------------------------------//
 
   render() {
-    console.log(this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
-    
+  //  console.log(this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
+
     return (
       <MotherDiv>
         <ComponentDiv>
