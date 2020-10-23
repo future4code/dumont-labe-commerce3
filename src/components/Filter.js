@@ -49,6 +49,7 @@ class Filter extends React.Component {
                 <NumberInput type="number"
                     value={this.props.minValue}
                     onChange={this.props.onChangeMin}
+                    min="0"
                 />
 
                 <InputTittle>Valor máximo</InputTittle>
@@ -56,6 +57,7 @@ class Filter extends React.Component {
                 <NumberInput type="number"
                     value={this.props.maxValue}
                     onChange={this.props.onChangeMax}
+                    min="0"
                 />
 
                 <H3Tittle>ou...</H3Tittle>
