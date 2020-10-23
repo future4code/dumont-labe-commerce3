@@ -6,6 +6,7 @@ const InputDiv = styled.div`
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    
 `
 const NumberInput = styled.input`
     box-sizing: border-box;
@@ -66,7 +67,7 @@ class Filter extends React.Component {
                     value={this.props.textValue}
                     onChange={this.props.onChangeText}
                 />
-
+                <br></br>
                 <InputTittle>Busque por tipo de produto:</InputTittle>
 
                 <select
@@ -76,7 +77,7 @@ class Filter extends React.Component {
                   <option value={'ship'}>Naves</option>
                   <option value={'figure'}>Bonecos de Ação</option>
                 </select>
-
+                <br></br>
                 <button onClick={this.props.clearFilters}>Limpar</button>
 
             </InputDiv>

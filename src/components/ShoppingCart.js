@@ -5,6 +5,7 @@ import ShoppingCartItem from './ShoppingCartItem'
 const CartListContainer = styled.div`
     display: grid;
     gap: 10px;
+    font-size: 12px;
 `
 
 class ShoppingCart extends React.Component {
@@ -35,7 +36,7 @@ class ShoppingCart extends React.Component {
             <h2>Carrinho:</h2>
             <CartListContainer>
                 {printedArray}
-                {<p><b>Valor total: R${this.getTotalValue()}</b></p>}
+                {<h2><b>Valor total: R${this.getTotalValue()}</b></h2>}
             </CartListContainer>
         </div>
     }

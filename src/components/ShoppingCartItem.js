@@ -3,12 +3,15 @@ import styled from 'styled-components';
 
 const ItemContainer = styled.div`
     display: grid;
+    display: block;
     grid-auto-flow: column;
     gap: 5px;
     align-items: center;
     
+
     p {
         margin:0;
+        font-size: 14px;
     }
 `
 

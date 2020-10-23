@@ -9,19 +9,22 @@ const MotherDiv = styled.div`
   height: 100vh;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 20% 1fr 20%;
-  column-gap: 8px;
+  grid-template-columns: 15% 1fr 20%;
+  column-gap: 0px;
   text-align: center;
-  padding: 16px 8px;
-  border: 1px dotted black;
+  padding: 0px;
+  border: none;
+  overflow-x: auto;
+  color: white
 `
 
 const ComponentDiv = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border: 1px dotted black;
+  border: none;
   padding: 16px 0;
+  background-color: black
 `
 
 class App extends React.Component {
