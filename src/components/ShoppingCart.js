@@ -15,7 +15,7 @@ class ShoppingCart extends React.Component {
         this.props.propsArray.forEach(element => {
             totalValue += element.value * element.quantity
         });
-        return totalValue
+        return totalValue.toFixed(2)
     }
    
     render() {
