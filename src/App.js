@@ -31,7 +31,7 @@ class App extends React.Component {
       name: "U.S.S. Discovery: NCC-1031",
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/228043_246x306.png",
-      inCart: false,
+      type: "ship",
       quantity: 0,
     },
     {
@@ -39,7 +39,7 @@ class App extends React.Component {
       name: "USS Enterprise NCC-1701-D",
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/99306_246x306.png",
-      inCart: false,
+      type: "ship",
       quantity: 0,
     },
     {
@@ -47,7 +47,7 @@ class App extends React.Component {
       name: "Romulan Warbird Special",
       value: 349.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/187059_246x306.png",
-      inCart: false,
+      type: "ship",
       quantity: 0,
     },
     {
@@ -55,7 +55,7 @@ class App extends React.Component {
       name: "Cylon Heavy Raider",
       value: 239.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/228122_246x306.png",
-      inCart: false,
+      type: "ship",
       quantity: 0,
     },
     {
@@ -63,7 +63,7 @@ class App extends React.Component {
       name: " Viper (Blood and Chrome)",
       value: 239.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/202940_246x306.png",
-      inCart: false,
+      type: "ship",
       quantity: 0,
     },
     {
@@ -71,7 +71,7 @@ class App extends React.Component {
       name: "U.S.S. Orville — ECV-197",
       value: 299.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/223235_246x306.png",
-      inCart: false,
+      type: "ship",
       quantity: 0,
     },
     {
@@ -79,7 +79,7 @@ class App extends React.Component {
       name: "Spocks Jellyfish",
       value: 139.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/179308_246x306.png",
-      inCart: false,
+      type: "ship",
       quantity: 0,
     },
     {
@@ -87,13 +87,45 @@ class App extends React.Component {
       name: "Klingon Iks Negh'Var",
       value: 119.99,
       imageUrl: "https://img.assinaja.com/assets/tZ/003/img/205901_246x306.png",
-      inCart: false,
+      type: "ship",
+      quantity: 0,
+    },
+    {
+      id: 8,
+      name: "10º Doutor - DR. WHO",
+      value: 109.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/23233_246x306.png",
+      type: "figure",
+      quantity: 0,
+    },
+    {
+      id: 9,
+      name: "Cyber-controlador - DR. WHO",
+      value: 99.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/23213_246x306.png",
+      type: "figure",
+      quantity: 0,
+    },
+    {
+      id: 10,
+      name: "Guerreira Siluriana - DR. WHO",
+      value: 89.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/23221_246x306.png",
+      type: "figure",
+      quantity: 0,
+    },    {
+      id: 11,
+      name: "Davros - DR. WHO",
+      value: 119.99,
+      imageUrl: "https://img.assinaja.com/assets/tZ/003/img/23209_246x306.png",
+      type: "figure",
       quantity: 0,
     },
     ],
     minFilterValue: "",
     maxFilterValue: "",
     textFilterValue: "",
+    typeFilterValue: "",
   }
 
   addToCart = (id) => {
@@ -151,7 +183,21 @@ class App extends React.Component {
     this.setState({ textFilterValue: newTextValue })
   }
 
-  filterProductsArray = (min, max, text) => {
+  onChangeType = (event) => {
+    const newTypeValue = event.target.value
+    this.setState({ typeFilterValue: newTypeValue })
+  }
+
+  clearFilters = () => {
+    this.setState({
+      minFilterValue: "",
+      maxFilterValue: "",
+      textFilterValue: "",
+      typeFilterValue: "",
+    })
+  }
+
+  filterProductsArray = (min, max, text, type) => {
     let filteredByValueArray
     if (min || max) {
       // Se min ou max não forem zero ou vazio. Senão, pula o filtro por valor.
@@ -181,13 +227,30 @@ class App extends React.Component {
     } else {
       fullyFilteredArray = filteredByValueArray
     }
+    
+    let filterByType
+    switch (type) {
+      case "ship":
+        filterByType = fullyFilteredArray.filter((product) => {
+        return product.type === "ship"
+        })
+        break;
+      case "figure":
+        filterByType = fullyFilteredArray.filter((product) => {
+        return product.type === "figure"
+        })
+        break;
+      default:
+        return fullyFilteredArray
+        break;
+    }
 
-    return fullyFilteredArray
+    return filterByType
   }
   // ---------------------------------------------------------//
 
   render() {
-    let arrayFilter = (this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue))
+    let arrayFilter = (this.filterProductsArray(this.state.minFilterValue, this.state.maxFilterValue, this.state.textFilterValue, this.state.typeFilterValue))
     return (
       <MotherDiv>
         <ComponentDiv>
@@ -195,10 +258,13 @@ class App extends React.Component {
             onChangeMin={this.onChangeMin}
             onChangeMax={this.onChangeMax}
             onChangeText={this.onChangeText}
-
+            onChangeType={this.onChangeType}
+            clearFilters={this.clearFilters}
             minValue={this.state.minFilterValue}
             maxValue={this.state.maxFilterValue}
             textValue={this.state.textFilterValue}
+            typeValue={this.state.typeFilterValue}
+           
           />
         </ComponentDiv>
         <ComponentDiv>

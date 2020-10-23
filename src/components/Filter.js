@@ -60,14 +60,25 @@ class Filter extends React.Component {
                     min="0"
                 />
 
-                <H3Tittle>ou...</H3Tittle>
-
-                <InputTittle>Busque por produto:</InputTittle>
+                <InputTittle>Busque pelo nome:</InputTittle>
 
                 <FreeTextInput placeholder="Nome do produto"
                     value={this.props.textValue}
                     onChange={this.props.onChangeText}
                 />
+
+                <InputTittle>Busque por tipo de produto:</InputTittle>
+
+                <select
+                  value={this.props.typeValue}
+                  onChange = {this.props.onChangeType}>
+                  <option value={""}>Todos</option>
+                  <option value={'ship'}>Naves</option>
+                  <option value={'figure'}>Bonecos de Ação</option>
+                </select>
+
+                <button onClick={this.props.clearFilters}>Limpar</button>
+
             </InputDiv>
         )
     }
