@@ -23,6 +23,7 @@ class ShoppingCartItem extends React.Component {
     addUnit = () => {
         let addQuantity = this.state.quantity + 1
         this.setState({quantity: addQuantity})
+        console.log("adiciona")
     }
 
     removeUnit = () => {
@@ -31,24 +32,18 @@ class ShoppingCartItem extends React.Component {
             this.props.removeItem(this.props.product.id)
         }
         this.setState({quantity: subQuantity})
+        console.log("remove")
     }
 
     render() {
-        console.log(this.props.product)
+        
         return <ItemContainer>
-<<<<<<< HEAD
-            <p>{this.props.product.quantity}x</p>
-            <p>{this.props.product.name}</p>
-            <p>R${this.props.product.value}</p>
-            <button onClick={() => this.props.removeFromCart(this.props.product.id)}>Remover</button>
-=======
             <p>{this.props.product.name}</p>
             <p>R${this.props.product.value}</p>
             <p>x {this.state.quantity}</p>
-            <button onClick = {this.addUnit()}>+</button>
-            <button onClick = {this.removeUnit()}>-</button>
+            <button onClick = {this.addUnit}>+</button>
+            <button onClick = {this.removeUnit}>-</button>
             <button onClick = {() => this.props.removeItem(this.props.product.id)}>X</button>
->>>>>>> c1ba3dc31a81def705f840f8913c1eaf829ba33c
         </ItemContainer>
     }
 }
